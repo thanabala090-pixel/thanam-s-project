@@ -1,0 +1,71 @@
+// A simple function to simulate fetching data from a News API
+// In a real application, you would replace this with a 'fetch' call to a backend/API.
+async function fetchNewsArticles() {
+    // Simulated news data
+    const mockArticles = [
+        { 
+            title: "Frontend Frameworks See Major Updates", 
+            description: "New versions of React and Vue are released with performance improvements and new hooks.", 
+            source: "Tech Daily", 
+            url: "#", 
+            image: "https://via.placeholder.com/600x400?text=Tech+News" 
+        },
+        { 
+            title: "Global Stock Markets Finish Strong", 
+            description: "Indices across the world report gains amidst positive economic data.", 
+            source: "Finance Weekly", 
+            url: "#", 
+            image: "https://via.placeholder.com/600x400?text=Market+Report" 
+        },
+        { 
+            title: "Local Community Event Draws Crowd", 
+            description: "Annual neighborhood festival celebrated with food and music.", 
+            source: "City Chronicle", 
+            url: "#", 
+            image: "https://via.placeholder.com/600x400?text=Local+Event" 
+        }
+    ];
+
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    return mockArticles;
+}
+
+// Function to render the news articles
+async function renderNewsFeed() {
+    const container = document.getElementById('news-feed-container');
+    const template = document.getElementById('news-card-template');
+    
+    // 1. Fetch data
+    const articles = await fetchNewsArticles();
+    
+    // 2. Clear loading message
+    container.innerHTML = ''; 
+
+    // 3. Iterate over articles and create card elements
+    articles.forEach(article => {
+        // Clone the content of the template
+        const cardClone = template.content.cloneNode(true);
+        
+        // Query the elements within the clone
+        const newsImage = cardClone.querySelector('.news-image');
+        const newsTitle = cardClone.querySelector('.news-title');
+        const newsSource = cardClone.querySelector('.news-source');
+        const newsDescription = cardClone.querySelector('.news-description');
+        const readMoreLink = cardClone.querySelector('.read-more');
+
+        // Populate the elements with article data
+        newsImage.src = article.image;
+        newsTitle.textContent = article.title;
+        newsSource.textContent = `Source: ${article.source}`;
+        newsDescription.textContent = article.description;
+        readMoreLink.href = article.url;
+
+        // Append the new card to the container
+        container.appendChild(cardClone);
+    });
+}
+
+// Execute the function to start rendering the feed
+renderNewsFeed();

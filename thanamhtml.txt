@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple News Feed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Global News Feed 📰</h1>
+    </header>
+
+    <div class="news-feed-container" id="news-feed-container">
+        <p class="loading-message">Loading news...</p>
+    </div>
+
+    <template id="news-card-template">
+        <div class="news-card">
+            <img src="" alt="News Image" class="news-image">
+            <div class="news-content">
+                <h2 class="news-title"></h2>
+                <p class="news-source"></p>
+                <p class="news-description"></p>
+                <a href="#" target="_blank" class="read-more">Read More</a>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
